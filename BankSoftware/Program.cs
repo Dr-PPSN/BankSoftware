@@ -7,6 +7,9 @@
         {
             List<Bankkonto> bankKontos = new List<Bankkonto>();
 
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            
             menu(bankKontos);
         }
         static void menu(List<Bankkonto> bankKontos)
@@ -82,18 +85,28 @@
             Console.Clear();
             Console.WriteLine("BankSoftware");
             Console.WriteLine("Kontoauszug");
-            Console.WriteLine("------------\n\n");
+            Console.WriteLine("------------\n");
 
-            Console.WriteLine("Bitte Kontonummer eingeben: ");
+            Console.WriteLine("Bitte Kontonummer eingeben oder 'all' für alle: ");
             string kontonummer = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("BankSoftware");
+            Console.WriteLine("Kontoauszug");
+            Console.WriteLine("------------\n");
             foreach (Bankkonto bankkonto in bankKontos)
             {
                 if (bankkonto.Kontonummer == kontonummer && bankkonto.IstAktiv == true)
                 {
                     bankkonto.kontoauszug();
+                    Console.ReadLine();
+                    return;
+                }
+                else if (kontonummer == "all" && bankkonto.IstAktiv == true)
+                {
+                    bankkonto.kontoauszug();
+                    Console.WriteLine("--------------------\n");
                 }
             }
-            Console.WriteLine("Konto nicht gefunden!");
             Console.ReadLine();
         }
         static void einzahlen(List<Bankkonto> bankKontos)
@@ -101,7 +114,7 @@
             Console.Clear();
             Console.WriteLine("BankSoftware");
             Console.WriteLine("Einzahlen");
-            Console.WriteLine("------------\n\n");
+            Console.WriteLine("------------\n");
 
             Console.WriteLine("Bitte Kontonummer eingeben: ");
             string kontonummer = Console.ReadLine();
@@ -115,16 +128,17 @@
                     Console.ReadLine();
                     return;
                 }
-                Console.WriteLine("Konto nicht gefunden!");
-                Console.ReadLine();
+                
             }
+            Console.WriteLine("Konto nicht gefunden!");
+            Console.ReadLine();
         }
         static void auszahlen(List<Bankkonto> bankKontos)
         {
             Console.Clear();
             Console.WriteLine("BankSoftware");
             Console.WriteLine("Auszahlen");
-            Console.WriteLine("------------\n\n");
+            Console.WriteLine("------------\n");
 
             Console.WriteLine("Bitte Kontonummer eingeben: ");
             string kontonummer = Console.ReadLine();
@@ -138,9 +152,9 @@
                     Console.ReadLine();
                     return;
                 }
-                Console.WriteLine("Konto nicht gefunden!");
-                Console.ReadLine();
             }
+            Console.WriteLine("Konto nicht gefunden!");
+                Console.ReadLine();
         }
         static void kontoLoeschen(List<Bankkonto> bankKontos)
         {
@@ -160,9 +174,9 @@
                     Console.ReadLine();
                     return;
                 }
-                Console.WriteLine("Konto nicht gefunden!");
-                Console.ReadLine();
             }
+            Console.WriteLine("Konto nicht gefunden!");
+            Console.ReadLine();
         }
         static void kontoWiederherstellen(List<Bankkonto> bankkontos)
         {
@@ -182,9 +196,9 @@
                     Console.ReadLine();
                     return;
                 }
-                Console.WriteLine("Konto konnte nicht wiederhergestellt werden");
-                Console.ReadLine();
             }
+            Console.WriteLine("Konto konnte nicht wiederhergestellt werden");
+            Console.ReadLine();
         }
         static string getKontonummer(int type)
         {
